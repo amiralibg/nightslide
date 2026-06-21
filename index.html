@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="color-scheme" content="dark" />
+    <title>NIGHTSLIDE</title>
+    <meta name="description" content="A top-down pixel-art drift game. Chain slides. Bank the combo. Beat your best." />
+    <!-- Shell display font + in-game pixel HUD font. Graceful fallback if offline. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Game canvas mounts here (the crisp pixel layer). -->
+    <div id="game-root"></div>
+    <!-- Shell/DOM UI mounts here (the premium layer): HUD, menus, transitions. -->
+    <div id="shell-root"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
