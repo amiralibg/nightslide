@@ -76,7 +76,7 @@ const driftArena: ArenaConfig = {
   blurb: 'Open lot. Room to chain.',
   width: 1800,
   height: 1200,
-  spawn: { x: 900, y: 880, heading: -Math.PI / 2 }, // facing "up" the lot
+  spawn: { x: 780, y: 880, heading: -Math.PI / 2 }, // facing "up" the lot, offset left so the cone ahead isn't blocking the launch
   wallThickness: 24,
   curbs: true,
   modes: ['scoring', 'gymkhana', 'survival'],

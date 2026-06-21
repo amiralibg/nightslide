@@ -903,6 +903,32 @@ body {
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
+/* narrow screens: the back arrow gets pinned to the top-left corner so it never
+   crowds the title; title + wallet stack centred beneath it. */
+@media (max-width: 560px) {
+  .modes__head {
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding-top: 6px;
+  }
+  .modes__head .icon-btn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: var(--glass); /* a touch more solid so it reads on the asphalt */
+  }
+  .modes__title {
+    font-size: 20px;
+    letter-spacing: 0.14em;
+    white-space: nowrap;
+  }
+  .modes__head .wallet {
+    margin-left: 0;
+  }
+}
 .modes__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
@@ -1163,38 +1189,34 @@ body.touch-active .hud__brand {
 
 /* with touch controls active, move the bottom HUD readouts up so the thumbs
    own the bottom corners */
-body.touch-active .hud__primary {
+/* touch HUD: speedo pinned top-left, score stacked directly beneath it (so the
+   score number has the full width to grow into), combo top-right. */
+body.touch-active .hud__speedo {
   bottom: auto;
   top: clamp(12px, 3vw, 18px);
   left: clamp(12px, 3vw, 18px);
-  padding: 10px 14px;
-  gap: 14px;
+  right: auto;
+  transform: scale(0.75);
+  transform-origin: top left;
 }
-/* combo shares the score's top + matching side inset so the three top
-   widgets line up and the gaps between them read evenly */
+body.touch-active .hud__primary {
+  bottom: auto;
+  top: 96px;
+  left: clamp(12px, 3vw, 18px);
+  padding: 10px 16px;
+  gap: 18px;
+}
 body.touch-active .hud__corner {
   top: clamp(12px, 3vw, 18px);
   right: clamp(12px, 3vw, 18px);
 }
-body.touch-active .hud__speedo {
-  bottom: auto;
-  top: clamp(12px, 3vw, 18px);
-  left: 50%;
-  right: auto;
-  transform: translateX(-50%) scale(0.74);
-  transform-origin: top center;
-}
-/* extra-narrow phones: tighten the top row so score/speedo/combo never overlap */
 @media (max-width: 480px) {
-  body.touch-active .hud__primary {
-    padding: 8px 11px;
-    gap: 10px;
-  }
-  /* keep only SCORE so the box stays narrow enough to clear the speedo */
-  body.touch-active .hud__primary .hud-stat:not(:first-child) {
-    display: none;
-  }
   body.touch-active .hud__speedo {
-    transform: translateX(-50%) scale(0.62);
+    transform: scale(0.68);
+  }
+  body.touch-active .hud__primary {
+    top: 86px;
+    padding: 8px 12px;
+    gap: 12px;
   }
 }
