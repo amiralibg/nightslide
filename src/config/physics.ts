@@ -219,8 +219,8 @@ const drift: PhysicsConfig = {
   brakeStrength: 1200,
   topSpeed: 560,
   dragCoef: 0.0019,
-  rollResist: 0.6,
-  idleDecel: 170,
+  rollResist: 0.2, // lighter rolling resistance so the car carries momentum
+  idleDecel: 45, // gentle off-throttle engine braking — the car coasts, drifts hold
 
   maxSteer: 0.6, // gentler max lock so steering nudges the drift, not grip-snaps it
   steerRate: 5.5, // smoother onset — no instant bite
