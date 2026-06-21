@@ -14,7 +14,7 @@ import { GAME_EVENTS, type DriveActions } from '../game';
  */
 export class TouchControls {
   private readonly root: HTMLDivElement;
-  private readonly drive: Partial<DriveActions> = { throttle: 0, steer: 0, handbrake: false };
+  private readonly drive: Partial<DriveActions> = { throttle: 0, brake: 0, steer: 0, handbrake: false };
   private steerOrigin = 0;
 
   /** Pixels of horizontal drag for full lock. */
@@ -31,12 +31,14 @@ export class TouchControls {
       <button class="tc-pause" aria-label="Pause">II</button>
       <div class="tc-pedals">
         <button class="tc-btn tc-btn--hand" aria-label="Handbrake">DRIFT</button>
+        <button class="tc-btn tc-btn--rev" aria-label="Brake / reverse">REV</button>
         <button class="tc-btn tc-btn--gas" aria-label="Throttle">GAS</button>
       </div>`;
     parent.appendChild(this.root);
 
     this.wireSteer(this.root.querySelector('.tc-steer') as HTMLElement);
     this.wireHold(this.root.querySelector('.tc-btn--gas') as HTMLElement, 'throttle', 1);
+    this.wireHold(this.root.querySelector('.tc-btn--rev') as HTMLElement, 'brake', 1);
     this.wireHold(this.root.querySelector('.tc-btn--hand') as HTMLElement, 'handbrake', true);
     (this.root.querySelector('.tc-pause') as HTMLElement).addEventListener('pointerdown', (e) => {
       e.preventDefault();
@@ -58,6 +60,7 @@ export class TouchControls {
 
   private reset(): void {
     this.drive.throttle = 0;
+    this.drive.brake = 0;
     this.drive.steer = 0;
     this.drive.handbrake = false;
     this.emit();

@@ -730,7 +730,12 @@ body {
   position: absolute;
   inset: 0;
   display: grid;
-  place-items: center;
+  justify-items: center;
+  /* `safe center` keeps short screens centred but falls back to top-aligned +
+     scrollable when content is taller than the viewport (mobile menus). */
+  align-content: safe center;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   pointer-events: auto;
   padding: clamp(20px, 5vw, 64px);
   text-align: center;
@@ -1085,34 +1090,44 @@ body {
   color: var(--text-low);
 }
 
+/* thumb cluster: DRIFT on top, REV + GAS below
+   [   DRIFT   ]
+   [REV] [ GAS ] */
 .tc-pedals {
   position: absolute;
   bottom: clamp(20px, 5vw, 48px);
-  right: clamp(16px, 4vw, 48px);
-  display: flex;
-  flex-direction: column;
-  gap: clamp(12px, 3vw, 20px);
+  right: clamp(14px, 4vw, 48px);
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: clamp(9px, 2.4vw, 16px);
+  align-items: center;
+  justify-items: center;
 }
 .tc-btn {
-  width: clamp(76px, 18vw, 108px);
-  height: clamp(76px, 18vw, 108px);
+  width: clamp(66px, 16vw, 100px);
+  height: clamp(66px, 16vw, 100px);
   border-radius: 50%;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(13px, 3.4vw, 17px);
+  font-size: clamp(12px, 3.2vw, 16px);
   letter-spacing: 1px;
   color: var(--text-hi);
   background: var(--glass);
   border: 2px solid var(--glass-edge);
   backdrop-filter: blur(6px);
 }
+.tc-btn--hand {
+  grid-column: 1 / -1; /* DRIFT spans the top, centred over REV+GAS */
+  color: var(--amber);
+  border-color: rgba(255, 207, 92, 0.5);
+}
+.tc-btn--rev {
+  color: var(--danger);
+  border-color: rgba(232, 80, 58, 0.5);
+}
 .tc-btn--gas {
   color: var(--green);
   border-color: rgba(67, 217, 138, 0.5);
-}
-.tc-btn--hand {
-  color: var(--amber);
-  border-color: rgba(255, 207, 92, 0.5);
 }
 .tc-btn--on {
   transform: scale(0.94);
@@ -1134,18 +1149,39 @@ body {
   border: 1px solid var(--glass-edge);
 }
 
+/* the keyboard hint is meaningless on touch and clutters the pause button */
+body.touch-active .hint {
+  display: none;
+}
+
 /* with touch controls active, move the bottom HUD readouts up so the thumbs
    own the bottom corners */
 body.touch-active .hud__primary {
   bottom: auto;
   top: clamp(12px, 3vw, 20px);
-  left: clamp(12px, 3vw, 20px);
+  left: clamp(10px, 2.5vw, 20px);
+  padding: 10px 14px;
+  gap: 14px;
 }
 body.touch-active .hud__speedo {
   bottom: auto;
-  top: clamp(12px, 3vw, 20px);
+  top: clamp(10px, 2.5vw, 18px);
   left: 50%;
   right: auto;
-  transform: translateX(-50%) scale(0.85);
+  transform: translateX(-50%) scale(0.74);
   transform-origin: top center;
+}
+/* extra-narrow phones: tighten the top row so score/speedo/combo never overlap */
+@media (max-width: 480px) {
+  body.touch-active .hud__primary {
+    padding: 8px 11px;
+    gap: 10px;
+  }
+  /* keep only SCORE so the box stays narrow enough to clear the speedo */
+  body.touch-active .hud__primary .hud-stat:not(:first-child) {
+    display: none;
+  }
+  body.touch-active .hud__speedo {
+    transform: translateX(-50%) scale(0.62);
+  }
 }
