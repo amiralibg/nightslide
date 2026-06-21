@@ -4,8 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="color-scheme" content="dark" />
-    <title>NIGHTSLIDE</title>
-    <meta name="description" content="A top-down pixel-art drift game. Chain slides. Bank the combo. Beat your best." />
+    <meta name="theme-color" content="#05070a" />
+    <title>NIGHTSLIDE — Midnight Street Drift Game</title>
+    <meta
+      name="description"
+      content="NIGHTSLIDE is a free top-down drift game in your browser. Chain slides into a combo multiplier, bank the score, and beat your best across four modes: Drift Arena, Time Trial, Gymkhana and Survival."
+    />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph / social cards. og:image is root-relative; most scrapers
+         resolve it against the page URL. Add the absolute domain here once known. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="NIGHTSLIDE" />
+    <meta property="og:title" content="NIGHTSLIDE — Midnight Street Drift" />
+    <meta
+      property="og:description"
+      content="Chain the slide. Bank the combo. Beat your best. A free top-down drift game in your browser."
+    />
+    <meta property="og:image" content="/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="NIGHTSLIDE — Midnight Street Drift" />
+    <meta name="twitter:description" content="Chain the slide. Bank the combo. Beat your best." />
+    <meta name="twitter:image" content="/og.jpg" />
+
+    <!-- Structured data: helps search engines classify the page as a game. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "NIGHTSLIDE",
+        "description": "A top-down browser drift game. Chain slides into a combo multiplier and beat your best across four modes.",
+        "genre": ["Racing", "Arcade", "Drifting"],
+        "applicationCategory": "Game",
+        "operatingSystem": "Web",
+        "gamePlatform": "Web browser",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }
+    </script>
+
     <!-- Shell display font + in-game pixel HUD font. Graceful fallback if offline. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

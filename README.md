@@ -1,4 +1,8 @@
-# NIGHTSLIDE
+<div align="center">
+  <img src="public/apple-touch-icon.png" width="104" alt="NIGHTSLIDE icon" />
+  <h1>NIGHTSLIDE</h1>
+  <p><em>Midnight street drift — chain the slide, bank the combo, beat your best.</em></p>
+</div>
 
 A top-down 2D pixel-art drift game with a sim-influenced handling model. The
 launch mode is a **Drift Scoring Arena** (chain drifts → combo multiplier → high
